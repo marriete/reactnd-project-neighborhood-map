@@ -3,6 +3,20 @@ import Map from './Map.js'
 import './App.css';
 
 class App extends Component {
+  state = {
+    markers: [
+      {title: "Dunkin' Donuts", position: {lat: 39.639102, lng: -84.225591}}
+    ]
+  }
+
+  createMarker = (map, mark) => {
+    var marker = new window.google.maps.Marker({
+      position: mark.position,
+      map: map,
+      title: mark.title
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,13 +26,8 @@ class App extends Component {
             center: {lat: 39.63867, lng: -84.215963},
             zoom: 15
           }}
-          onMapLoad={map => {
-            var marker = new window.google.maps.Marker({
-              position: {lat: 39.63867, lng: -84.215963},
-              map: map,
-              title: 'Hello Dayton!'
-            });
-          }} />
+          createMarker={this.createMarker}
+          markers={this.state.markers} />
       </div>
     );
   }

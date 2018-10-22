@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import Marker from './Marker.js'
 
 class Map extends Component {
+	state = {
+		map: null
+	}
+
 	onScriptLoad() {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),
 			this.props.options);
-		this.props.onMapLoad(map)
+		this.setState({map})
 	}
 
 	componentDidMount() {
@@ -26,7 +31,9 @@ class Map extends Component {
 
 	render() {
 		return (
-			<div id={this.props.id} ></div>
+			<div id={this.props.id} >
+				<Marker marker={this.props.markers[0]} map={this.state.map} createMarker={this.props.createMarker} />
+			</div>
 		)
 	}
 }
