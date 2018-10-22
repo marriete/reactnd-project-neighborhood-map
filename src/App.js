@@ -10,7 +10,7 @@ class App extends Component {
           id="map"
           options={{
             center: {lat: 39.63867, lng: -84.215963},
-            zoom: 8
+            zoom: 15
           }}
           onMapLoad={map => {
             var marker = new window.google.maps.Marker({
