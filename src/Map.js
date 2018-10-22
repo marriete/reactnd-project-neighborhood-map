@@ -32,7 +32,10 @@ class Map extends Component {
 	render() {
 		return (
 			<div id={this.props.id} >
-				<Marker marker={this.props.markers[0]} map={this.state.map} createMarker={this.props.createMarker} />
+				{this.props.markers.map((marker, index) => (
+					<Marker marker={marker} map={this.state.map} createMarker={this.props.createMarker} key={index} />
+				))}
+				}
 			</div>
 		)
 	}

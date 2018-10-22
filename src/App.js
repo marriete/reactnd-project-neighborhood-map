@@ -5,7 +5,8 @@ import './App.css';
 class App extends Component {
   state = {
     markers: [
-      {title: "Dunkin' Donuts", position: {lat: 39.639102, lng: -84.225591}}
+      {title: "Dunkin' Donuts", position: {lat: 39.639102, lng: -84.225591}},
+      {title: "Chick-Fil-A", position: {lat: 39.629376, lng: -84.195062}}
     ]
   }
 
