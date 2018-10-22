@@ -32,7 +32,7 @@ class App extends Component {
           id="map"
           options={{
             center: {lat: 39.63867, lng: -84.215963},
-            zoom: 15
+            zoom: 13
           }}
           createMarker={this.createMarker}
           markers={this.state.markers} />
