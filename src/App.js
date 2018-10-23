@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map.js'
 import FilterMenu from './FilterMenu.js'
+import ListView from './ListView.js'
 import './App.css';
 import { Route, Link } from 'react-router-dom'
 
@@ -44,7 +45,7 @@ class App extends Component {
           </section>
         )} />
         <Route path="/list" render={() => (
-          <div></div>
+          <ListView markers={this.state.markers} />
         )} />
       </div>
     );
