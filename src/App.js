@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Map from './Map.js'
+import FilterMenu from './FilterMenu.js'
 import './App.css';
+import { Route, Link } from 'react-router-dom'
 
 class App extends Component {
   state = {
@@ -28,14 +30,22 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map
-          id="map"
-          options={{
-            center: {lat: 39.63867, lng: -84.215963},
-            zoom: 13
-          }}
-          createMarker={this.createMarker}
-          markers={this.state.markers} />
+        <Route exact path="/" render={() => (
+          <section>
+            <Map
+              id="map"
+              options={{
+                center: {lat: 39.63867, lng: -84.215963},
+                zoom: 13
+              }}
+              createMarker={this.createMarker}
+              markers={this.state.markers} />
+            <FilterMenu />
+          </section>
+        )} />
+        <Route path="/list" render={() => (
+          <div></div>
+        )} />
       </div>
     );
   }
