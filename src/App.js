@@ -41,7 +41,7 @@ class App extends Component {
               }}
               createMarker={this.createMarker}
               markers={this.state.markers} />
-            <FilterMenu />
+            {/*<FilterMenu />*/}
           </section>
         )} />
         <Route path="/list" render={() => (

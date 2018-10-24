@@ -35,7 +35,6 @@ class Map extends Component {
 				{this.props.markers.map((marker, index) => (
 					<Marker marker={marker} map={this.state.map} createMarker={this.props.createMarker} key={index} />
 				))}
-				}
 			</div>
 		)
 	}
