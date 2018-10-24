@@ -38,3 +38,93 @@ code {
 #nav:hover {
 	cursor: pointer;
 }
+.list-item {
+	max-width: 650px;
+	max-height: 210px;
+	box-sizing: border-box;
+	margin: auto;
+	border-top: solid;
+	border-bottom: solid;
+	border-width: 1px;
+	display: grid;
+	grid-template-columns: 33% auto;
+	grid-template-rows: 50% 50%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.list-item-image {
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	display: flex;
+	align-items: center;
+}
+.list-item-image img {
+	margin: auto;
+}
+.list-item-info {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 1;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: auto auto auto;
+}
+.list-item-name {
+	text-align: start;
+	margin-top: auto;
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 1;
+	grid-row-end: 1;
+}
+.list-item-rating {
+	text-align: start;
+	margin-top: auto;
+	margin-bottom: auto;
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 2;
+	grid-row-end: 2;
+}
+.list-item-type {
+	text-align: start;
+	margin-bottom: auto;
+	grid-column-start: 1;
+	grid-column-end: 1;
+	grid-row-start: 3;
+	grid-row-end: 3;
+}
+.list-item-phone {
+	text-align: end;
+	margin-top: auto;
+	grid-column-start: 2;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 1;
+}
+.list-item-address {
+	text-align: end;
+	margin-top: auto;
+	margin-bottom: auto;
+	grid-column-start: 2;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 2;
+}
+.list-item-city {
+	text-align: end;
+	margin-bottom: auto;
+	grid-column-start: 2;
+	grid-column-end: 2;
+	grid-row-start: 3;
+	grid-row-end: 3;
+}
+.list-item-extra {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 2;
+}

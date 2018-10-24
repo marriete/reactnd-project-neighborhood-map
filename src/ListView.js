@@ -6,7 +6,7 @@ class ListView extends Component {
 		return (
 			<div>
 				{this.props.markers.map((marker, index) => (
-					<ListItem key={index} marker={marker} />
+					<ListItem key={index} marker={marker} index={index} />
 				))}
 			</div>
 		)

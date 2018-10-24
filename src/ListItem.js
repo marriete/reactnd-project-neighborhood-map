@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
+import NotFound from './imgs/NotFound.png'
 
 class ListItem extends Component {
 	render() {
-		const {marker} = this.props;
+		const {marker, index} = this.props;
 
 		return (
 			<div className="list-item">
-				<h3 className="list-item-index">{}</h3>
-				<h2 className="list-item-name">{marker.title}</h2>
-				<div className="list-item-rating">3.5</div>
-				<span className="list-item-phone">954-294-4907</span>
-				<span className="list-item-address">7302 Creek Water Drive</span>
-				<span className="list-item-city">Dayton, OH</span>
-				<p className="list-item-recent-review">Garbage</p>
+				<div className="list-item-image">
+					<img src={NotFound} alt=""/>
+				</div>
+				<div className="list-item-info">
+					<span className="list-item-name">{index+1}. {marker.title}</span>
+					<div className="list-item-rating">3.5</div>
+					<span className="list-item-type">Restaurant</span>
+					<span className="list-item-phone">111-111-1111</span>
+					<span className="list-item-address">1111 Falling Water Lane</span>
+					<span className="list-item-city">Dayton, OH</span>
+				</div>
+				<div className="list-item-extra">
+					<p className="list-item-recent-review">Garbage</p>
+				</div>
 			</div>
 		)
 	}
