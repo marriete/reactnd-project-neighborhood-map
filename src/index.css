@@ -128,3 +128,28 @@ code {
 	grid-row-start: 2;
 	grid-row-end: 2;
 }
+.close-list {
+	display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background: white;
+  background-image: url('./icons/arrow-back.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+}
+.to-list {
+	position: fixed;
+  top: 60px;
+  right: 10px;
+  width: 50px;
+  height: 53px;
+  background: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  z-index: 1;
+}
