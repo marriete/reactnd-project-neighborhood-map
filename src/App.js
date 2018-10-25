@@ -48,7 +48,7 @@ class App extends Component {
         })
         .catch(event => {
           console.log("failure")
-        })}, 300*index);
+        })}, 350*index);
     })
 
     return markers;

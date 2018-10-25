@@ -62,7 +62,7 @@ code {
 }
 .list-item-image img {
 	margin: auto;
-	width: 100%;
+	max-width: 80%;
 }
 .list-item-info {
 	grid-column-start: 2;

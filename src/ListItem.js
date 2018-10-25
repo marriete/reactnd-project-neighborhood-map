@@ -8,7 +8,7 @@ class ListItem extends Component {
 		return (
 			<div className="list-item">
 				<div className="list-item-image">
-					<img src={NotFound} alt=""/>
+					<img src={marker.image_url} alt=""/>
 				</div>
 				<div className="list-item-info">
 					<span className="list-item-name">{index+1}. {marker.name}</span>
@@ -18,9 +18,9 @@ class ListItem extends Component {
 					<span className="list-item-address">{marker.location.address1}</span>
 					<span className="list-item-city">{marker.location.city} {marker.location.zip_code}</span>
 				</div>
-				<div className="list-item-extra">
+				{/*<div className="list-item-extra">
 					<p className="list-item-recent-review">Garbage</p>
-				</div>
+				</div>*/}
 			</div>
 		)
 	}
