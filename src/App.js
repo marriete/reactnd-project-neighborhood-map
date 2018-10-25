@@ -25,7 +25,7 @@ class App extends Component {
   getMarkerData = (locations) => {
     let markers = [];
 
-    locations.forEach((location) => {
+    locations.forEach((location, index) => {
       let config = {
         headers: {'Authorization': "Bearer 1rk0i7zyjBP9sW-Ji0lLaljcswABo0q42PQRS_lTSmR2t2eicmMnyI1Ux6_nL-djivA0n1YAlm-OoIzBKY9kzhwx5MGCZzm46Qk5wQIfA0BdoplrE_LWsFJs8IbPW3Yx"},
         params: {
@@ -36,19 +36,19 @@ class App extends Component {
       var proxyUrl = "http://localhost:8080/";
       var targetUrl = `https://api.yelp.com/v3/businesses/${config.params.id}`;
 
-
-      fetch(proxyUrl + targetUrl, config)
-      .then(response => {
-        console.log("success")
-        response.json().then(data => {
-          console.log(data)
-          markers.push(data);
-          console.log(markers);
+      setTimeout(function() {
+        fetch(proxyUrl + targetUrl, config)
+        .then(response => {
+          console.log("success")
+          response.json().then(data => {
+            console.log(data)
+            markers.push(data);
+            console.log(markers);
+          })
         })
-      })
-      .catch(event => {
-        console.log("failure")
-      })
+        .catch(event => {
+          console.log("failure")
+        })}, 300*index);
     })
 
     return markers;
@@ -89,7 +89,7 @@ class App extends Component {
           </section>
         )} />
         <Route path="/list" render={() => (
-          <ListView markers={this.state.locations} />
+          <ListView markers={this.state.markers} />
         )} />
       </div>
     );
