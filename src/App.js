@@ -22,7 +22,7 @@ class App extends Component {
     markers: []
   }
 
-  getMarkerData = (locations) => {
+  getYelpData = (locations) => {
     let markers = [];
 
     locations.forEach((location, index) => {
@@ -63,7 +63,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    let markers = this.getMarkerData(this.state.locations);
+    let markers = this.getYelpData(this.state.locations);
     this.setState({markers});
   }
 
