@@ -41,14 +41,12 @@ class App extends Component {
         .then(response => {
           console.log("success")
           response.json().then(data => {
-            console.log(data)
             markers.push(data);
-            console.log(markers);
           })
         })
         .catch(event => {
           console.log("failure")
-        })}, 350*index);
+        })}, 400*index);
     })
 
     return markers;
@@ -65,10 +63,6 @@ class App extends Component {
   componentWillMount() {
     let markers = this.getYelpData(this.state.locations);
     this.setState({markers});
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   render() {
