@@ -43,8 +43,10 @@ class App extends Component {
           console.log("success")
           response.json().then(data => {
             markers.push(data);
-            console.log(markers)
             this.setState(markers)
+            if (index === 8) {
+              this.setState({loaded: true})
+            }
           })
         })
         .catch(event => {
@@ -66,7 +68,6 @@ class App extends Component {
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
-    this.setState({loaded: true})
   }
 
   content() {

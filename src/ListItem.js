@@ -13,7 +13,7 @@ class ListItem extends Component {
 				<div className="list-item-info">
 					<span className="list-item-name">{index+1}. {marker.name}</span>
 					<div className="list-item-rating">{marker.rating}</div>
-					<span className="list-item-type">Restaurant</span>
+					<span className="list-item-type">{marker.categories[0].title}</span>
 					<span className="list-item-phone">{marker.phone}</span>
 					<span className="list-item-address">{marker.location.address1}</span>
 					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
