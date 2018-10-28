@@ -59,9 +59,9 @@ class App extends Component {
 
   createMarker = (map, mark) => {
     var marker = new window.google.maps.Marker({
-      position: mark.position,
+      position: {lat: mark.coordinates.latitude, lng: mark.coordinates.longitude},
       map: map,
-      title: mark.title
+      title: mark.name
     })
   }
 
@@ -82,7 +82,7 @@ class App extends Component {
                 zoom: 13
               }}
               createMarker={this.createMarker}
-              markers={this.state.locations} />
+              markers={this.state.markers} />
             <Link className="to-list" to="/list">List View</Link>
             {/*<FilterMenu />*/}
           </section>
