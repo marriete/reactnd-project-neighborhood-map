@@ -19,7 +19,8 @@ class App extends Component {
       {title: "Rusty Bucket Tavern", position: {lat: 39.636468, lng: -84.221696}, id: "-2Bl3K5TtKXE3oknF_sdIw"},
       {title: "Rave Cinemas Dayton South and XD", position: {lat: 39.643232, lng: -84.228703}, id: "0pFHC87CyM8KbHAuCC36sw"}
     ],
-    markers: []
+    markers: [],
+    loaded: false
   }
 
   getYelpData = (locations) => {
@@ -36,12 +37,14 @@ class App extends Component {
       var proxyUrl = "http://localhost:8080/";
       var targetUrl = `https://api.yelp.com/v3/businesses/${config.params.id}`;
 
-      setTimeout(function() {
+      setTimeout(() => {
         fetch(proxyUrl + targetUrl, config)
         .then(response => {
           console.log("success")
           response.json().then(data => {
             markers.push(data);
+            console.log(markers)
+            this.setState(markers)
           })
         })
         .catch(event => {
@@ -60,13 +63,14 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
-    let markers = this.getYelpData(this.state.locations);
+  async componentWillMount() {
+    let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
+    this.setState({loaded: true})
   }
 
-  render() {
-    return (
+  content() {
+    return(
       <div className="App">
         <Route exact path="/" render={() => (
           <section>
@@ -85,6 +89,14 @@ class App extends Component {
         <Route path="/list" render={() => (
           <ListView markers={this.state.markers} />
         )} />
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.state.loaded ? this.content() : <div>Loading...</div>}
       </div>
     );
   }

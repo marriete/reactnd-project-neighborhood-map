@@ -16,7 +16,7 @@ class ListItem extends Component {
 					<span className="list-item-type">Restaurant</span>
 					<span className="list-item-phone">{marker.phone}</span>
 					<span className="list-item-address">{marker.location.address1}</span>
-					<span className="list-item-city">{marker.location.city} {marker.location.zip_code}</span>
+					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
 				</div>
 				{/*<div className="list-item-extra">
 					<p className="list-item-recent-review">Garbage</p>
