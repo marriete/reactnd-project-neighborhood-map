@@ -154,3 +154,9 @@ code {
   background-size: 28px;
   z-index: 1;
 }
+.info-image {
+	width: 200px;
+}
+.info-name {
+	margin: 0;
+}

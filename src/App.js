@@ -63,11 +63,23 @@ class App extends Component {
       map: map,
       title: mark.name
     })
+
+    return marker;
+  }
+
+  createInfoWindow = (content, marker, map) => {
+    var infoWindow = new window.google.maps.InfoWindow({
+      content: content
+    });
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker)
+    });
   }
 
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
+    console.log(this.state.markers)
   }
 
   content() {
@@ -82,6 +94,7 @@ class App extends Component {
                 zoom: 13
               }}
               createMarker={this.createMarker}
+              createInfoWindow={this.createInfoWindow}
               markers={this.state.markers} />
             <Link className="to-list" to="/list">List View</Link>
             {/*<FilterMenu />*/}
