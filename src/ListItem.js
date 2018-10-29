@@ -2,6 +2,32 @@ import React, { Component } from 'react'
 import NotFound from './imgs/NotFound.png'
 
 class ListItem extends Component {
+	returnDay(dayValue) {
+		switch(dayValue) {
+			case 0:
+				return "Monday";
+				break;
+			case 1:
+				return "Tuesday";
+				break;
+			case 2:
+				return "Wednesday";
+				break;
+			case 3:
+				return "Thursday";
+				break;
+			case 4:
+				return "Friday";
+				break;
+			case 5:
+				return "Saturday";
+				break;
+			case 6:
+				return "Sunday";
+				break;
+		}
+	}
+
 	render() {
 		const {marker, index} = this.props;
 
@@ -18,9 +44,26 @@ class ListItem extends Component {
 					<span className="list-item-address">{marker.location.address1}</span>
 					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
 				</div>
-				{/*<div className="list-item-extra">
-					<p className="list-item-recent-review">Garbage</p>
-				</div>*/}
+				{(typeof marker.hours !== "undefined") ?
+					<div className="list-item-extra">
+						<table>
+							<tbody>
+								{marker.hours[0]['open'].map((content, index) => {
+									return (
+									<tr key={index}>
+										<td>{this.returnDay(content.day)}</td>
+										<td>{content.start}</td>
+										<td>{content.end}</td>
+									</tr>
+								)})}
+							</tbody>
+						</table>
+					</div>
+				:
+					<div className="list-item-extra">
+						<p className="list-item-hours">No hours to report :(</p>
+					</div>
+				}
 			</div>
 		)
 	}
