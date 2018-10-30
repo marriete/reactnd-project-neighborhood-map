@@ -18,6 +18,9 @@ table, tbody, th, td {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
+table {
+	margin-top: 1.4em;
+}
 #root, .App, #map {
 	height: 100%;
 }
@@ -73,12 +76,11 @@ table, tbody, th, td {
 	grid-row-start: 1;
 	grid-row-end: 1;
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: auto auto;
 	grid-template-rows: auto auto auto;
 }
 .list-item-name {
 	text-align: start;
-	margin-top: auto;
 	grid-column-start: 1;
 	grid-column-end: 1;
 	grid-row-start: 1;
@@ -86,8 +88,6 @@ table, tbody, th, td {
 }
 .list-item-rating {
 	text-align: start;
-	margin-top: auto;
-	margin-bottom: auto;
 	grid-column-start: 1;
 	grid-column-end: 1;
 	grid-row-start: 2;
@@ -95,7 +95,6 @@ table, tbody, th, td {
 }
 .list-item-type {
 	text-align: start;
-	margin-bottom: auto;
 	grid-column-start: 1;
 	grid-column-end: 1;
 	grid-row-start: 3;
@@ -103,7 +102,6 @@ table, tbody, th, td {
 }
 .list-item-phone {
 	text-align: end;
-	margin-top: auto;
 	grid-column-start: 2;
 	grid-column-end: 2;
 	grid-row-start: 1;
@@ -111,8 +109,6 @@ table, tbody, th, td {
 }
 .list-item-address {
 	text-align: end;
-	margin-top: auto;
-	margin-bottom: auto;
 	grid-column-start: 2;
 	grid-column-end: 2;
 	grid-row-start: 2;
@@ -120,7 +116,6 @@ table, tbody, th, td {
 }
 .list-item-city {
 	text-align: end;
-	margin-bottom: auto;
 	grid-column-start: 2;
 	grid-column-end: 2;
 	grid-row-start: 3;
