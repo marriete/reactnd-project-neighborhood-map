@@ -28,6 +28,15 @@ class ListItem extends Component {
 		}
 	}
 
+	returnStandardTime(militaryTime) {
+		var hours24 = parseInt(militaryTime.substring(0,2),10);
+		var hours = ((hours24 + 11) % 12) + 1;
+		var meridiem = hours24 > 11 ? "PM" : "AM";
+		var minutes = militaryTime.substring(2);
+
+		return hours + ":" + minutes + " " + meridiem;
+	}
+
 	render() {
 		const {marker, index} = this.props;
 
@@ -52,8 +61,8 @@ class ListItem extends Component {
 									return (
 									<tr key={index}>
 										<td>{this.returnDay(content.day)}</td>
-										<td>{content.start}</td>
-										<td>{content.end}</td>
+										<td>{this.returnStandardTime(content.start)}</td>
+										<td>{this.returnStandardTime(content.end)}</td>
 									</tr>
 								)})}
 							</tbody>
