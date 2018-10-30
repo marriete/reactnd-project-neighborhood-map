@@ -148,9 +148,11 @@ table {
   width: 50px;
   height: 53px;
   background: white;
+  background-image: url('./icons/ListViewIcon.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 28px;
+  background-size: 50px;
+  font-size: 0;
   z-index: 1;
 }
 .info-image {
