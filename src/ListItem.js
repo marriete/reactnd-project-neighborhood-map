@@ -37,6 +37,14 @@ class ListItem extends Component {
 		return hours + ":" + minutes + " " + meridiem;
 	}
 
+	returnPhoneNumber(phoneNumber) {
+		var areaCode = phoneNumber.substring(2,5);
+		var prefix = phoneNumber.substring(5,8);
+		var line = phoneNumber.substring(8,12);
+
+		return areaCode + "-" + prefix + "-" + line;
+	}
+
 	render() {
 		const {marker, index} = this.props;
 
@@ -49,7 +57,7 @@ class ListItem extends Component {
 					<span className="list-item-name">{index+1}. {marker.name}</span>
 					<span className="list-item-rating">{marker.rating}</span>
 					<span className="list-item-type">{marker.categories[0].title}</span>
-					<span className="list-item-phone">{marker.phone}</span>
+					<span className="list-item-phone">{this.returnPhoneNumber(marker.phone)}</span>
 					<span className="list-item-address">{marker.location.address1}</span>
 					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
 				</div>
