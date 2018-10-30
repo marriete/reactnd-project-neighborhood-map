@@ -37,18 +37,10 @@ class ListItem extends Component {
 		return hours + ":" + minutes + " " + meridiem;
 	}
 
-	returnPhoneNumber(phoneNumber) {
-		var areaCode = phoneNumber.substring(2,5);
-		var prefix = phoneNumber.substring(5,8);
-		var line = phoneNumber.substring(8,12);
-
-		return areaCode + "-" + prefix + "-" + line;
-	}
-
 	returnYelpRating(ratingValue, images) {
 		switch(ratingValue % 1) {
 			case 0:
-				return images["regular_" + ratingValue + ".png"]; //YelpStars + "regular_" + ratingValue + ".png";
+				return images["regular_" + ratingValue + ".png"];
 				break;
 			case 0.5:
 				return images["regular_" + parseInt(ratingValue) + "_half.png"];
@@ -75,7 +67,7 @@ class ListItem extends Component {
 					<span className="list-item-name">{index+1}. {marker.name}</span>
 					<img className="list-item-rating" src={this.returnYelpRating(marker.rating, images)} alt="Yelp Rating"/>
 					<span className="list-item-type">{marker.categories[0].title}</span>
-					<span className="list-item-phone">{this.returnPhoneNumber(marker.phone)}</span>
+					<span className="list-item-phone">{this.props.returnPhoneNumber(marker.phone)}</span>
 					<span className="list-item-address">{marker.location.address1}</span>
 					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
 				</div>

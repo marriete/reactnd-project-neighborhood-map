@@ -18,7 +18,7 @@ class Marker extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.googleMarker ? <InfoWindow map={this.props.map} marker={this.state.googleMarker} markerInfo={this.props.marker} createInfoWindow={this.props.createInfoWindow} /> : <div></div>}
+				{this.state.googleMarker ? <InfoWindow map={this.props.map} marker={this.state.googleMarker} markerInfo={this.props.marker} returnPhoneNumber={this.props.returnPhoneNumber} createInfoWindow={this.props.createInfoWindow} /> : <div></div>}
 			</div>
 		)
 	}

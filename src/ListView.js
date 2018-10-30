@@ -8,7 +8,11 @@ class ListView extends Component {
 			<div>
 				<Link className="close-list" to="/">Close</Link>
 				{this.props.markers.map((marker, index) => (
-					<ListItem key={index} marker={marker} index={index} />
+					<ListItem
+						key={index}
+						marker={marker}
+						index={index}
+						returnPhoneNumber={this.props.returnPhoneNumber} />
 				))}
 			</div>
 		)

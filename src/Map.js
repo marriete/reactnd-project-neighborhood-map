@@ -33,7 +33,13 @@ class Map extends Component {
 		return (
 			<div id={this.props.id} >
 				{this.props.markers.map((marker, index) => (
-					<Marker marker={marker} map={this.state.map} createMarker={this.props.createMarker} createInfoWindow={this.props.createInfoWindow} key={index} />
+					<Marker
+						marker={marker}
+						map={this.state.map}
+						createMarker={this.props.createMarker}
+						createInfoWindow={this.props.createInfoWindow}
+						returnPhoneNumber={this.props.returnPhoneNumber}
+						key={index} />
 				))}
 			</div>
 		)

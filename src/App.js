@@ -76,6 +76,14 @@ class App extends Component {
     });
   }
 
+  returnPhoneNumber(phoneNumber) {
+    var areaCode = phoneNumber.substring(2,5);
+    var prefix = phoneNumber.substring(5,8);
+    var line = phoneNumber.substring(8,12);
+
+    return areaCode + "-" + prefix + "-" + line;
+  }
+
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
@@ -95,13 +103,16 @@ class App extends Component {
               }}
               createMarker={this.createMarker}
               createInfoWindow={this.createInfoWindow}
+              returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
             <Link className="to-list" to="/list">List View</Link>
             {/*<FilterMenu />*/}
           </section>
         )} />
         <Route path="/list" render={() => (
-          <ListView markers={this.state.markers} />
+          <ListView
+            markers={this.state.markers}
+            returnPhoneNumber={this.returnPhoneNumber} />
         )} />
       </div>
     )
