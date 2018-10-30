@@ -45,8 +45,26 @@ class ListItem extends Component {
 		return areaCode + "-" + prefix + "-" + line;
 	}
 
+	returnYelpRating(ratingValue, images) {
+		switch(ratingValue % 1) {
+			case 0:
+				return images["regular_" + ratingValue + ".png"]; //YelpStars + "regular_" + ratingValue + ".png";
+				break;
+			case 0.5:
+				return images["regular_" + parseInt(ratingValue) + "_half.png"];
+				break;
+		}
+	}
+
+	importAllImages(r) {
+		let images = {};
+		r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+		return images;
+	}
+
 	render() {
 		const {marker, index} = this.props;
+		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/));
 
 		return (
 			<div className="list-item">
@@ -55,7 +73,7 @@ class ListItem extends Component {
 				</div>
 				<div className="list-item-info">
 					<span className="list-item-name">{index+1}. {marker.name}</span>
-					<span className="list-item-rating">{marker.rating}</span>
+					<img className="list-item-rating" src={this.returnYelpRating(marker.rating, images)} alt="Yelp Rating"/>
 					<span className="list-item-type">{marker.categories[0].title}</span>
 					<span className="list-item-phone">{this.returnPhoneNumber(marker.phone)}</span>
 					<span className="list-item-address">{marker.location.address1}</span>
