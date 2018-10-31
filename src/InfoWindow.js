@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 class InfoWindow extends Component {
 	content() {
+		console.log(this.props.markerInfo)
 		if (this.props.markerInfo.hours) {
 			return (
 			`
@@ -9,11 +10,7 @@ class InfoWindow extends Component {
 				<img class="info-image" src="${this.props.markerInfo.image_url}" alt="${this.props.markerInfo.name}" />
 				<h2 class="info-name">${this.props.markerInfo.name}</h2>
 				<p class="info-phone">${this.props.returnPhoneNumber(this.props.markerInfo.phone)}</p>
-					<table>
-						<tr>
-							<td>${this.props.markerInfo.hours}</td>
-						</tr>
-					</table>
+				${this.props.markerInfo.hours[0]['is_open_now'] ? "<p class='info-open'>We're OPEN! :)</p>" : "<p class='info-open'>We're CLOSED! :(</p>"}
 			</div>
 			`
 			)
