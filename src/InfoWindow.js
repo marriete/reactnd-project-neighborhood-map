@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 class InfoWindow extends Component {
 	content() {
-		console.log(this.props.markerInfo)
 		if (this.props.markerInfo.hours) {
 			return (
 			`
