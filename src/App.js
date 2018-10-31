@@ -17,7 +17,7 @@ class App extends Component {
       {title: "Walmart Supercenter", position: {lat: 39.630666, lng: -84.212289}, id: "QkhYR_uPqnQLsedHE96bhw"},
       {title: "Dayton Mall", position: {lat: 39.633682, lng: -84.220963}, id: "qQn0TR-opTfiX02jJnbr0w"},
       {title: "Rusty Bucket Tavern", position: {lat: 39.636468, lng: -84.221696}, id: "-2Bl3K5TtKXE3oknF_sdIw"},
-      {title: "Rave Cinemas Dayton South and XD", position: {lat: 39.643232, lng: -84.228703}, id: "0pFHC87CyM8KbHAuCC36sw"}
+      {title: "Cinemark - Dayton South", position: {lat: 39.643232, lng: -84.228703}, id: "9CiLinXhVODN0f4skzEthw"}
     ],
     markers: [],
     loaded: false
@@ -87,7 +87,6 @@ class App extends Component {
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
-    console.log(this.state.markers)
   }
 
   content() {

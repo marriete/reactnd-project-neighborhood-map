@@ -58,12 +58,12 @@ class ListItem extends Component {
 					<img src={marker.image_url} alt=""/>
 				</div>
 				<div className="list-item-info">
-					<span className="list-item-name">{index+1}. {marker.name}</span>
-					<img className="list-item-rating" src={this.returnYelpRating(marker.rating, images)} alt="Yelp Rating"/>
-					<span className="list-item-type">{marker.categories[0].title}</span>
-					<span className="list-item-phone">{this.props.returnPhoneNumber(marker.phone)}</span>
-					<span className="list-item-address">{marker.location.address1}</span>
-					<span className="list-item-city">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
+					<span className="list-item-name list-item-mutual">{index+1}. {marker.name}</span>
+					<img className="list-item-rating list-item-mutual" src={this.returnYelpRating(marker.rating, images)} alt="Yelp Rating"/>
+					<span className="list-item-type list-item-mutual">{marker.categories[0].title}</span>
+					<span className="list-item-phone list-item-mutual">{this.props.returnPhoneNumber(marker.phone)}</span>
+					<span className="list-item-address list-item-mutual">{marker.location.address1}</span>
+					<span className="list-item-city list-item-mutual">{marker.location.city}, {marker.location.state} {marker.location.zip_code}</span>
 				</div>
 				{(typeof marker.hours !== "undefined") ?
 					<div className="list-item-extra">
