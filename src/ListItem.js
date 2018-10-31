@@ -69,6 +69,11 @@ class ListItem extends Component {
 					<div className="list-item-extra">
 						<table>
 							<tbody>
+								<tr>
+									<td className="list-item-strong">Day of the Week</td>
+									<td className="list-item-strong">Opening Time</td>
+									<td className="list-item-strong">Closing Time</td>
+								</tr>
 								{marker.hours[0]['open'].map((content, index) => {
 									return (
 									<tr key={index}>

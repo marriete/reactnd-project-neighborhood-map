@@ -132,6 +132,9 @@ table {
 	margin-top: auto;
 	margin-bottom: auto;
 }
+.list-item-strong {
+	font-weight: bold;
+}
 .close-list {
 	display: block;
   top: 20px;
