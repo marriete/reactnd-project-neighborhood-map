@@ -1,30 +1,24 @@
 import React, { Component } from 'react'
-import NotFound from './imgs/NotFound.png'
 
 class ListItem extends Component {
 	returnDay(dayValue) {
 		switch(dayValue) {
 			case 0:
 				return "Monday";
-				break;
 			case 1:
 				return "Tuesday";
-				break;
 			case 2:
 				return "Wednesday";
-				break;
 			case 3:
 				return "Thursday";
-				break;
 			case 4:
 				return "Friday";
-				break;
 			case 5:
 				return "Saturday";
-				break;
 			case 6:
 				return "Sunday";
-				break;
+			default:
+				return null;
 		}
 	}
 
@@ -41,16 +35,16 @@ class ListItem extends Component {
 		switch(ratingValue % 1) {
 			case 0:
 				return images["regular_" + ratingValue + ".png"];
-				break;
 			case 0.5:
 				return images["regular_" + parseInt(ratingValue) + "_half.png"];
-				break;
+			default:
+				return null;
 		}
 	}
 
 	importAllImages(r) {
 		let images = {};
-		r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+		r.keys().map((item, index) => { return images[item.replace('./', '')] = r(item); });
 		return images;
 	}
 
