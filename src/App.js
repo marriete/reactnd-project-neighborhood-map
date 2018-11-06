@@ -4,6 +4,7 @@ import FilterMenu from './FilterMenu.js'
 import ListView from './ListView.js'
 import './App.css';
 import { Route, Link } from 'react-router-dom'
+import FilterModal from './FilterModal.js'
 
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
       {title: "Cinemark - Dayton South", position: {lat: 39.643232, lng: -84.228703}, id: "9CiLinXhVODN0f4skzEthw"}
     ],
     markers: [],
-    loaded: false
+    loaded: false,
+    show: false
   }
 
   getYelpData = (locations) => {
@@ -84,6 +86,14 @@ class App extends Component {
     return areaCode + "-" + prefix + "-" + line;
   }
 
+  showModal = () => {
+    this.setState({ show: true });
+  }
+
+  hideModal = () => {
+    this.setState({ show: false });
+  }
+
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
@@ -105,7 +115,11 @@ class App extends Component {
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
             <Link className="to-list" to="/list">List View</Link>
-            {/*<FilterMenu />*/}
+            <FilterModal show={this.state.show} handleClose={this.hideModal}>
+              <p>Modal</p>
+              <p>Data</p>
+            </FilterModal>
+            <button className="filter-button" type="button" onClick={this.showModal}>Filters</button>
           </section>
         )} />
         <Route path="/list" render={() => (
