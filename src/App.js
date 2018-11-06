@@ -21,6 +21,7 @@ class App extends Component {
       {title: "Cinemark - Dayton South", position: {lat: 39.643232, lng: -84.228703}, id: "9CiLinXhVODN0f4skzEthw"}
     ],
     markers: [],
+    filters: [],
     loaded: false,
     show: false
   }
@@ -45,6 +46,7 @@ class App extends Component {
           console.log("success")
           response.json().then(data => {
             markers.push(data);
+            this.getFilters(data);
             this.setState(markers)
             if (index === 8) {
               this.setState({loaded: true})
@@ -57,6 +59,15 @@ class App extends Component {
     })
 
     return markers;
+  }
+
+  getFilters = (data) => {
+    data.categories.forEach((cat) => {
+      if ( !this.state.filters.includes( cat.title )) {
+        this.setState({ filters: [ ...this.state.filters, cat.title ]})
+      }
+      console.log(this.state.filters);
+    });
   }
 
   createMarker = (map, mark) => {
@@ -114,7 +125,7 @@ class App extends Component {
               createInfoWindow={this.createInfoWindow}
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
-            <Link className="to-list" to="/list">List View</Link>
+            <Link type="button" className="to-list" to="/list">List View</Link>
             <FilterModal show={this.state.show} handleClose={this.hideModal}>
               <p>Modal</p>
               <p>Data</p>
