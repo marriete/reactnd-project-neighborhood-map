@@ -5,7 +5,13 @@ class FilterModal extends Component {
 		return(
 			<div className={this.props.show ? "modal display-block" : "modal display-none"}>
 				<section className="modal-main">
-					{this.props.children}
+				{this.props.filters.map((option, index) => {
+					return(
+						<label className="filter-list" key={option}>
+							<input type="checkbox" name={option} aria-label={option} value={option}/>{option}
+						</label>
+					)
+				})}
 					<button onClick={this.props.handleClose}>Close</button>
 				</section>
 			</div>

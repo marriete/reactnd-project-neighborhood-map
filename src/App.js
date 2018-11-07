@@ -66,7 +66,6 @@ class App extends Component {
       if ( !this.state.filters.includes( cat.title )) {
         this.setState({ filters: [ ...this.state.filters, cat.title ]})
       }
-      console.log(this.state.filters);
     });
   }
 
@@ -126,7 +125,7 @@ class App extends Component {
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
             <Link type="button" className="to-list" to="/list">List View</Link>
-            <FilterModal show={this.state.show} handleClose={this.hideModal}>
+            <FilterModal show={this.state.show} handleClose={this.hideModal} filters={this.state.filters}>
               <p>Modal</p>
               <p>Data</p>
             </FilterModal>

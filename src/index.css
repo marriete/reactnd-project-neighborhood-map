@@ -206,3 +206,7 @@ table {
   font-size: 0;
   z-index: 1;
 }
+.filter-list {
+	display: block;
+	text-align: left;
+}
