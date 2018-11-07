@@ -22,6 +22,7 @@ class App extends Component {
     ],
     markers: [],
     filters: [],
+    checkedFilters: [],
     loaded: false,
     show: false
   }
@@ -67,6 +68,7 @@ class App extends Component {
         this.setState({ filters: [ ...this.state.filters, cat.title ]})
       }
     });
+    this.getCheckedMarkers();
   }
 
   createMarker = (map, mark) => {
@@ -88,7 +90,7 @@ class App extends Component {
     });
   }
 
-  returnPhoneNumber(phoneNumber) {
+  returnPhoneNumber = (phoneNumber) => {
     var areaCode = phoneNumber.substring(2,5);
     var prefix = phoneNumber.substring(5,8);
     var line = phoneNumber.substring(8,12);
@@ -102,6 +104,46 @@ class App extends Component {
 
   hideModal = () => {
     this.setState({ show: false });
+  }
+
+  containsObject = (objectArray, newObject) => {
+    let testArray = objectArray.map(obj => {
+      if (obj.id === newObject.id )
+        return true
+      else
+        return false
+    })
+    if (testArray.includes(true))
+      return true
+    else
+      return false
+  }
+
+  getCheckedMarkers = () => {
+    let result = [];
+
+    if ( this.state.checkedFilters === [] ) {
+      return this.state.markers;
+    } else {
+      this.state.checkedFilters.forEach((filterOption) => {
+        let test = null;
+        test = this.state.markers.filter(marker => {
+          let booleanArray = []
+          marker.categories.forEach((cat) => {
+            if (cat.title === filterOption) {
+              booleanArray = [...booleanArray, true]
+            } else {
+              booleanArray = [...booleanArray, false]
+            }
+          })
+          return booleanArray.includes(true)
+        })
+        if ( !this.containsObject( result, test[0] ) ) {
+          result = result.concat( test );
+        }
+      })
+      return result
+    }
   }
 
   async componentWillMount() {
