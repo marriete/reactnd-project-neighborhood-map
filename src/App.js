@@ -167,6 +167,8 @@ class App extends Component {
   content() {
     return(
       <div className="App">
+        <button className="filter-button" type="button" onClick={this.showModal}>Filters</button>
+        <FilterModal show={this.state.show} handleClose={this.hideModal} changeFunction={this.checkboxChange} filters={this.state.filters} />
         <Route exact path="/" render={() => (
           <section>
             <Map
@@ -180,11 +182,6 @@ class App extends Component {
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
             <Link type="button" className="to-list" to="/list">List View</Link>
-            <FilterModal show={this.state.show} handleClose={this.hideModal} changeFunction={this.checkboxChange} filters={this.state.filters}>
-              <p>Modal</p>
-              <p>Data</p>
-            </FilterModal>
-            <button className="filter-button" type="button" onClick={this.showModal}>Filters</button>
           </section>
         )} />
         <Route path="/list" render={() => (
