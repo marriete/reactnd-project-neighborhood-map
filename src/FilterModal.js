@@ -8,7 +8,7 @@ class FilterModal extends Component {
 				{this.props.filters.map((option, index) => {
 					return(
 						<label className="filter-list" key={option}>
-							<input type="checkbox" name={option} aria-label={option} value={option}/>{option}
+							<input type="checkbox" onChange={this.props.changeFunction} name={option} aria-label={option} value={option}/>{option}
 						</label>
 					)
 				})}

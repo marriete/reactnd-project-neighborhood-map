@@ -146,6 +146,19 @@ class App extends Component {
     }
   }
 
+  checkboxChange = (e) => {
+    console.log(e.target.checked)
+    if (e.target.checked === true) {
+      this.setState({checkedFilters: [...this.state.checkedFilters, e.target.value]})
+    } else {
+      let temp = []
+      temp = this.state.checkedFilters.filter((option) => {
+        return e.target.value !== option
+      })
+      this.setState({checkedFilters: temp})
+    }
+  }
+
   async componentWillMount() {
     let markers = await this.getYelpData(this.state.locations);
     this.setState({markers});
@@ -167,7 +180,7 @@ class App extends Component {
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.markers} />
             <Link type="button" className="to-list" to="/list">List View</Link>
-            <FilterModal show={this.state.show} handleClose={this.hideModal} filters={this.state.filters}>
+            <FilterModal show={this.state.show} handleClose={this.hideModal} changeFunction={this.checkboxChange} filters={this.state.filters}>
               <p>Modal</p>
               <p>Data</p>
             </FilterModal>
