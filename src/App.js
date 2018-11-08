@@ -121,9 +121,8 @@ class App extends Component {
 
   getCheckedMarkers = () => {
     let result = [];
-
-    if ( this.state.checkedFilters === [] ) {
-      return this.state.markers;
+    if ( this.state.checkedFilters.length === 0 ) {
+      result = this.state.markers
     } else {
       this.state.checkedFilters.forEach((filterOption) => {
         let test = null;
@@ -142,8 +141,9 @@ class App extends Component {
           result = result.concat( test );
         }
       })
-      return result
     }
+    console.log(result)
+    return result
   }
 
   checkboxChange = (e) => {
