@@ -20,6 +20,7 @@ class App extends Component {
       {title: "Rusty Bucket Tavern", position: {lat: 39.636468, lng: -84.221696}, id: "-2Bl3K5TtKXE3oknF_sdIw"},
       {title: "Cinemark - Dayton South", position: {lat: 39.643232, lng: -84.228703}, id: "9CiLinXhVODN0f4skzEthw"}
     ],
+    yelpData: [],
     markers: [],
     filters: [],
     checkedFilters: [],
@@ -28,7 +29,7 @@ class App extends Component {
   }
 
   getYelpData = (locations) => {
-    let markers = [];
+    let yelpData = [];
 
     locations.forEach((location, index) => {
       let config = {
@@ -46,9 +47,9 @@ class App extends Component {
         .then(response => {
           console.log("success")
           response.json().then(data => {
-            markers.push(data);
+            yelpData.push(data);
             this.getFilters(data);
-            this.setState(markers)
+            this.setState(yelpData)
             if (index === 8) {
               this.setState({loaded: true})
             }
@@ -59,7 +60,7 @@ class App extends Component {
         })}, 400*index);
     })
 
-    return markers;
+    return yelpData;
   }
 
   getFilters = (data) => {
@@ -122,11 +123,11 @@ class App extends Component {
   getCheckedMarkers = () => {
     let result = [];
     if ( this.state.checkedFilters.length === 0 ) {
-      result = this.state.markers
+      result = this.state.yelpData
     } else {
       this.state.checkedFilters.forEach((filterOption) => {
         let test = null;
-        test = this.state.markers.filter(marker => {
+        test = this.state.yelpData.filter(marker => {
           let booleanArray = []
           marker.categories.forEach((cat) => {
             if (cat.title === filterOption) {
@@ -143,25 +144,25 @@ class App extends Component {
       })
     }
     console.log(result)
-    return result
+    this.setState({markers: result})
   }
 
   checkboxChange = (e) => {
     console.log(e.target.checked)
     if (e.target.checked === true) {
-      this.setState({checkedFilters: [...this.state.checkedFilters, e.target.value]})
+      this.setState({checkedFilters: [...this.state.checkedFilters, e.target.value]}, () => {this.getCheckedMarkers()})
     } else {
       let temp = []
       temp = this.state.checkedFilters.filter((option) => {
         return e.target.value !== option
       })
-      this.setState({checkedFilters: temp})
+      this.setState({checkedFilters: temp}, () => {this.getCheckedMarkers()})
     }
   }
 
   async componentWillMount() {
-    let markers = await this.getYelpData(this.state.locations);
-    this.setState({markers});
+    let yelpData = await this.getYelpData(this.state.locations);
+    this.setState({yelpData});
   }
 
   content() {
