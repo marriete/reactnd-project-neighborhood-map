@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import Marker from './Marker.js'
 
 class Map extends Component {
-	state = {
-		map: null
-	}
-
 	onScriptLoad() {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),
 			this.props.options);
-		this.setState({map})
+		this.props.saveMap(map)
+		// this.setState({map}, () => (this.props.saveMap(map)))
 	}
 
 	componentDidMount() {
@@ -35,7 +32,7 @@ class Map extends Component {
 				{this.props.markers.map((marker, index) => (
 					<Marker
 						marker={marker}
-						map={this.state.map}
+						map={this.props.map}
 						createMarker={this.props.createMarker}
 						createInfoWindow={this.props.createInfoWindow}
 						returnPhoneNumber={this.props.returnPhoneNumber}
