@@ -6,7 +6,6 @@ class Map extends Component {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),
 			this.props.options);
-		this.props.showSelectMarkers();
 		this.props.saveMap(map)
 	}
 
@@ -33,10 +32,12 @@ class Map extends Component {
 					<Marker
 						marker={marker}
 						map={this.props.map}
+						googleMarker={typeof this.props.googleMarkers[index] !== "undefined" ? this.props.googleMarkers[index] : null}
 						createMarker={this.props.createMarker}
 						createInfoWindow={this.props.createInfoWindow}
 						returnPhoneNumber={this.props.returnPhoneNumber}
 						addGoogleMarker={this.props.addGoogleMarker}
+						showSelectMarkers={this.props.showSelectMarkers}
 						initialized={this.props.initialized}
 						toggleInit={this.props.toggleInit}
 						key={marker.id} />

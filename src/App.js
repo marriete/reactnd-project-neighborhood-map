@@ -228,7 +228,7 @@ class App extends Component {
               createInfoWindow={this.createInfoWindow}
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.yelpData}
-              googleMarkers={this.state.googleMarkers}
+              googleMarkers={this.state.googleMarkers !== [] ? this.state.googleMarkers : null}
               addGoogleMarker={this.addGoogleMarker}
               showSelectMarkers={this.showSelectMarkers}
               saveMap={this.saveMap}

@@ -11,13 +11,19 @@ class Marker extends Component {
 		if (prevState.initialMarker !== this.props.marker) {
 			this.setState({initialMarker: this.props.marker})
 			if (this.props.map !== null && this.state.googleMarker === null) {
-				let marker = this.props.createMarker(this.props.map, this.props.marker)
-				this.setState({googleMarker: marker}, () => {
-					if(this.props.initialized === false) {
-							this.props.addGoogleMarker(this.state.googleMarker);
-							this.props.toggleInit();
-					}
-				})
+				if ( this.props.initialized === true ) {
+					let marker =this.props.googleMarker
+					this.setState({googleMarker: marker})
+				} else {
+					let marker = this.props.createMarker(this.props.map, this.props.marker)
+					this.setState({googleMarker: marker}, () => {
+						if(this.props.initialized === false) {
+								this.props.addGoogleMarker(this.state.googleMarker);
+								this.props.toggleInit();
+						}
+					})
+				}
+				this.props.showSelectMarkers()
 			}
 		}
 	}
