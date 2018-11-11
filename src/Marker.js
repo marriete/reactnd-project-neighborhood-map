@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import InfoWindow from './InfoWindow.js'
 
 class Marker extends Component {
 	state = {
@@ -16,6 +15,7 @@ class Marker extends Component {
 					this.setState({googleMarker: marker})
 				} else {
 					let marker = this.props.createMarker(this.props.map, this.props.marker)
+					this.props.createInfoWindow(this.content(), marker, this.props.map)
 					this.setState({googleMarker: marker}, () => {
 						if(this.props.initialized === false) {
 								this.props.addGoogleMarker(this.state.googleMarker);
@@ -28,10 +28,36 @@ class Marker extends Component {
 		}
 	}
 
+	content() {
+		if (this.props.marker.hours) {
+			return (
+			`
+			<div class="infoWindow">
+				<img class="info-image" src="${this.props.marker.image_url}" alt="${this.props.marker.name}" />
+				<h2 class="info-name">${this.props.marker.name}</h2>
+				<p class="info-phone">${this.props.returnPhoneNumber(this.props.marker.phone)}</p>
+				${this.props.marker.hours[0]['is_open_now'] ? "<p class='info-open'>We're OPEN! :)</p>" : "<p class='info-open'>We're CLOSED! :(</p>"}
+			</div>
+			`
+			)
+		} else {
+			return (
+			`
+			<div class="infoWindow">
+				<img class="info-image" src="${this.props.marker.image_url}" alt="${this.props.marker.name}" />
+				<h2 class="info-name">${this.props.marker.name}</h2>
+				<p class="info-phone">${this.props.returnPhoneNumber(this.props.marker.phone)}</p>
+				<p>No hours to report</p>
+			</div>
+			`
+			)
+		}
+	}
+
 	render() {
 		return (
 			<div>
-				{this.state.googleMarker ? <InfoWindow map={this.props.map} marker={this.state.googleMarker} markerInfo={this.props.marker} returnPhoneNumber={this.props.returnPhoneNumber} createInfoWindow={this.props.createInfoWindow} /> : <div></div>}
+				{/*<InfoWindow map={this.props.map} marker={this.props.googleMarker} marker={this.props.marker} returnPhoneNumber={this.props.returnPhoneNumber} createInfoWindow={this.props.createInfoWindow} />*/}
 			</div>
 		)
 	}

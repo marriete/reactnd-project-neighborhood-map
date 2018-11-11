@@ -25,6 +25,7 @@ class App extends Component {
     filters: [],
     map: null,
     googleMarkers: [],
+    infoWindows: [],
     checkedFilters: [],
     loaded: false,
     show: false,
@@ -164,7 +165,6 @@ class App extends Component {
   }
 
   checkboxChange = (e) => {
-    console.log(e.target.checked)
     if (e.target.checked === true) {
       this.setState({checkedFilters: [...this.state.checkedFilters, e.target.value]}, () => {this.getCheckedMarkers()})
     } else {
@@ -186,7 +186,6 @@ class App extends Component {
   showSelectMarkers = () => {
     if(this.state.initialized === true) {
       this.hideAllMarkers()
-      console.log(this.filterMarkers())
       let desiredMarkers = this.filterMarkers()
       for (let i=0; i < desiredMarkers.length; i++) {
         if (this.state.googleMarkers[desiredMarkers[i]].map === null)

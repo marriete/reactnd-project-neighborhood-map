@@ -33,6 +33,7 @@ class Map extends Component {
 						marker={marker}
 						map={this.props.map}
 						googleMarker={typeof this.props.googleMarkers[index] !== "undefined" ? this.props.googleMarkers[index] : null}
+						googleMarkers={this.props.googleMarkers}
 						createMarker={this.props.createMarker}
 						createInfoWindow={this.props.createInfoWindow}
 						returnPhoneNumber={this.props.returnPhoneNumber}
