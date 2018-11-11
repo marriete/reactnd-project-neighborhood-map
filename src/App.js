@@ -23,6 +23,7 @@ class App extends Component {
     yelpData: [],
     markers: [],
     filters: [],
+    googleMarkers: [],
     checkedFilters: [],
     loaded: false,
     show: false
@@ -147,6 +148,12 @@ class App extends Component {
     this.setState({markers: result})
   }
 
+  addGoogleMarker = (marker) => {
+    this.setState((prevState) => ({
+      googleMarkers: [...prevState.googleMarkers, marker]
+    }))
+  }
+
   checkboxChange = (e) => {
     console.log(e.target.checked)
     if (e.target.checked === true) {
@@ -181,7 +188,8 @@ class App extends Component {
               createMarker={this.createMarker}
               createInfoWindow={this.createInfoWindow}
               returnPhoneNumber={this.returnPhoneNumber}
-              markers={this.state.markers} />
+              markers={this.state.markers}
+              addGoogleMarker={this.addGoogleMarker} />
             <Link type="button" className="to-list" to="/list">List View</Link>
           </section>
         )} />

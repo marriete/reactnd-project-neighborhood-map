@@ -10,8 +10,10 @@ class Marker extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.initialMarker !== this.props.marker) {
 			this.setState({initialMarker: this.props.marker})
-			let marker = this.props.createMarker(this.props.map, this.props.marker)
-			this.setState({googleMarker: marker})
+			if (this.props.map !== null && this.state.googleMarker === null) {
+				let marker = this.props.createMarker(this.props.map, this.props.marker)
+				this.setState({googleMarker: marker}, () => {this.props.addGoogleMarker(this.state.googleMarker)})
+			}
 		}
 	}
 

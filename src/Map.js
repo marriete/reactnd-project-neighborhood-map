@@ -39,6 +39,7 @@ class Map extends Component {
 						createMarker={this.props.createMarker}
 						createInfoWindow={this.props.createInfoWindow}
 						returnPhoneNumber={this.props.returnPhoneNumber}
+						addGoogleMarker={this.props.addGoogleMarker}
 						key={index} />
 				))}
 			</div>
