@@ -6,8 +6,8 @@ class Map extends Component {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),
 			this.props.options);
+		this.props.showSelectMarkers();
 		this.props.saveMap(map)
-		// this.setState({map}, () => (this.props.saveMap(map)))
 	}
 
 	componentDidMount() {
@@ -37,7 +37,9 @@ class Map extends Component {
 						createInfoWindow={this.props.createInfoWindow}
 						returnPhoneNumber={this.props.returnPhoneNumber}
 						addGoogleMarker={this.props.addGoogleMarker}
-						key={index} />
+						initialized={this.props.initialized}
+						toggleInit={this.props.toggleInit}
+						key={marker.id} />
 				))}
 			</div>
 		)

@@ -27,7 +27,8 @@ class App extends Component {
     googleMarkers: [],
     checkedFilters: [],
     loaded: false,
-    show: false
+    show: false,
+    initialized: false
   }
 
   getYelpData = (locations) => {
@@ -72,6 +73,10 @@ class App extends Component {
       }
     });
     this.getCheckedMarkers();
+  }
+
+  toggleInit = () => {
+    this.setState({initialized: true})
   }
 
   createMarker = (map, mark) => {
@@ -145,8 +150,7 @@ class App extends Component {
         }
       })
     }
-    console.log(result)
-    this.setState({markers: result})
+    this.setState({markers: result}, () => this.showSelectMarkers())
   }
 
   addGoogleMarker = (marker) => {
@@ -172,6 +176,36 @@ class App extends Component {
     }
   }
 
+  hideAllMarkers = () => {
+    for(let i=0; i<this.state.googleMarkers.length; i++){
+      if ( this.state.googleMarkers[i].map !== null)
+        this.state.googleMarkers[i].setMap(null)
+    }
+  }
+
+  showSelectMarkers = () => {
+    if(this.state.initialized === true) {
+      this.hideAllMarkers()
+      console.log(this.filterMarkers())
+      let desiredMarkers = this.filterMarkers()
+      for (let i=0; i < desiredMarkers.length; i++) {
+        if (this.state.googleMarkers[desiredMarkers[i]].map === null)
+          this.state.googleMarkers[desiredMarkers[i]].setMap(this.state.map)
+      }
+    }
+  }
+
+  filterMarkers = () => {
+    return this.state.markers.map((marker) => {
+      for(let i=0; i < this.state.googleMarkers.length; i++) {
+        if (this.state.googleMarkers[i].title === marker.name) {
+          // this.state.googleMarkers[i].setMap(this.state.map)
+          return i
+        }
+      }
+    })
+  }
+
   async componentWillMount() {
     let yelpData = await this.getYelpData(this.state.locations);
     this.setState({yelpData});
@@ -193,10 +227,14 @@ class App extends Component {
               createMarker={this.createMarker}
               createInfoWindow={this.createInfoWindow}
               returnPhoneNumber={this.returnPhoneNumber}
-              markers={this.state.markers}
+              markers={this.state.yelpData}
+              googleMarkers={this.state.googleMarkers}
               addGoogleMarker={this.addGoogleMarker}
+              showSelectMarkers={this.showSelectMarkers}
               saveMap={this.saveMap}
-              map={this.state.map} />
+              map={this.state.map}
+              initialized={this.state.initialized}
+              toggleInit={this.toggleInit} />
             <Link type="button" className="to-list" to="/list">List View</Link>
           </section>
         )} />
