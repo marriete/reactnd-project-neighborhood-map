@@ -15,7 +15,7 @@ class Marker extends Component {
 					this.setState({googleMarker: marker})
 				} else {
 					let marker = this.props.createMarker(this.props.map, this.props.marker)
-					this.props.createInfoWindow(this.content(), marker, this.props.map)
+					this.props.infoWindowListener(this.content(), marker, this.props.map, this.props.infoWindow)
 					this.setState({googleMarker: marker}, () => {
 						if(this.props.initialized === false) {
 								this.props.addGoogleMarker(this.state.googleMarker);

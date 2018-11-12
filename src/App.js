@@ -26,6 +26,7 @@ class App extends Component {
     map: null,
     googleMarkers: [],
     infoWindows: [],
+    infoWindow: null,
     checkedFilters: [],
     loaded: false,
     show: false,
@@ -91,21 +92,18 @@ class App extends Component {
     return marker;
   }
 
-  createInfoWindow = (content, marker, map) => {
-    window.google.maps.InfoWindow.prototype.opened = false;
-    var infoWindow = new window.google.maps.InfoWindow({
-      content: content
-    });
+  infoWindowListener = (content, marker, map, infoWindow) => {
     marker.addListener('click', function() {
       if(infoWindow.opened){
-         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
-         infoWindow.close(map, marker)
-         infoWindow.opened = false;
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+        infoWindow.close(map, marker)
+        infoWindow.opened = false;
       }
       else{
-         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
-         infoWindow.open(map, marker)
-         infoWindow.opened = true;
+        infoWindow.setContent(content)
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
+        infoWindow.open(map, marker)
+        infoWindow.opened = true;
       }
 
     });
@@ -172,8 +170,11 @@ class App extends Component {
     }))
   }
 
-  saveMap = (map) => {
-    this.setState({map: map})
+  saveMap = (map, infoWindow) => {
+    this.setState({
+      map: map,
+      infoWindow: infoWindow
+    })
   }
 
   checkboxChange = (e) => {
@@ -236,7 +237,8 @@ class App extends Component {
                 zoom: 13
               }}
               createMarker={this.createMarker}
-              createInfoWindow={this.createInfoWindow}
+              infoWindow={this.state.infoWindow}
+              infoWindowListener={this.infoWindowListener}
               returnPhoneNumber={this.returnPhoneNumber}
               markers={this.state.yelpData}
               googleMarkers={this.state.googleMarkers !== [] ? this.state.googleMarkers : null}
