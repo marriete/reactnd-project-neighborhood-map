@@ -3,26 +3,26 @@ import Marker from './Marker.js'
 
 class Map extends Component {
 	createInfoWindow = () => {
-    window.google.maps.InfoWindow.prototype.opened = false;
-    var infoWindow = new window.google.maps.InfoWindow();
-    return infoWindow;
+    window.google.maps.InfoWindow.prototype.opened = false
+    var infoWindow = new window.google.maps.InfoWindow()
+    return infoWindow
 	}
 
-	onScriptLoad() {
+	onScriptLoad = () => {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),
-			this.props.options);
-		const infoWindow = this.createInfoWindow();
+			this.props.options)
+		const infoWindow = this.createInfoWindow()
 		this.props.saveMap(map, infoWindow)
 	}
 
 	componentDidMount() {
 		if (!window.google) {
-			var script = document.createElement('script');
-			script.type = 'text/javascript';
-			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA45Kaoio3gDd4K2qUppRAPv7qhKkzOh90`;
-			var x = document.getElementsByTagName('script')[0];
-			x.parentNode.insertBefore(script, x);
+			var script = document.createElement('script')
+			script.type = 'text/javascript'
+			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA45Kaoio3gDd4K2qUppRAPv7qhKkzOh90`
+			var x = document.getElementsByTagName('script')[0]
+			x.parentNode.insertBefore(script, x)
 
 			script.addEventListener('load', event => {
 				this.onScriptLoad()

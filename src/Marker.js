@@ -18,8 +18,8 @@ class Marker extends Component {
 					this.props.infoWindowListener(this.content(), marker, this.props.map, this.props.infoWindow)
 					this.setState({googleMarker: marker}, () => {
 						if(this.props.initialized === false) {
-								this.props.addGoogleMarker(this.state.googleMarker);
-								this.props.toggleInit();
+								this.props.addGoogleMarker(this.state.googleMarker)
+								this.props.toggleInit()
 						}
 					})
 				}

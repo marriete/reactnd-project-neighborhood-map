@@ -1,56 +1,54 @@
 import React, { Component } from 'react'
 
 class ListItem extends Component {
-	returnDay(dayValue) {
+	returnDay = (dayValue) => {
 		switch(dayValue) {
 			case 0:
-				return "Monday";
+				return "Monday"
 			case 1:
-				return "Tuesday";
+				return "Tuesday"
 			case 2:
-				return "Wednesday";
+				return "Wednesday"
 			case 3:
-				return "Thursday";
+				return "Thursday"
 			case 4:
-				return "Friday";
+				return "Friday"
 			case 5:
-				return "Saturday";
+				return "Saturday"
 			case 6:
-				return "Sunday";
+				return "Sunday"
 			default:
-				return null;
+				return null
 		}
 	}
 
-	returnStandardTime(militaryTime) {
-		var hours24 = parseInt(militaryTime.substring(0,2),10);
-		var hours = ((hours24 + 11) % 12) + 1;
-		var meridiem = hours24 > 11 ? "PM" : "AM";
-		var minutes = militaryTime.substring(2);
+	returnStandardTime = (militaryTime) => {
+		var hours24 = parseInt(militaryTime.substring(0,2),10)
+		var hours = ((hours24 + 11) % 12) + 1
+		var meridiem = hours24 > 11 ? "PM" : "AM"
+		var minutes = militaryTime.substring(2)
 
-		return hours + ":" + minutes + " " + meridiem;
+		return hours + ":" + minutes + " " + meridiem
 	}
 
-	returnYelpRating(ratingValue, images) {
+	returnYelpRating = (ratingValue, images) => {
 		switch(ratingValue % 1) {
 			case 0:
-				return images["regular_" + ratingValue + ".png"];
+				return images["regular_" + ratingValue + ".png"]
 			case 0.5:
-				return images["regular_" + parseInt(ratingValue) + "_half.png"];
+				return images["regular_" + parseInt(ratingValue) + "_half.png"]
 			default:
-				return null;
+				return null
 		}
 	}
 
-	importAllImages(r) {
-		let images = {};
-		r.keys().map((item, index) => { return images[item.replace('./', '')] = r(item); });
-		return images;
+	importAllImages = (r) => {
+		let images = {}
+		r.keys().map((item, index) => { return images[item.replace('./', '')] = r(item) })
+		return images
 	}
 
-	onClick(marker, googleMarkers) {
-		console.log(marker)
-		console.log(googleMarkers)
+	onClick = (marker, googleMarkers) => {
 		googleMarkers.forEach((gmark) => {
 			if(gmark.title === marker.name) {
 				window.google.maps.event.trigger(gmark, 'click')
@@ -60,8 +58,8 @@ class ListItem extends Component {
 	}
 
 	render() {
-		const {marker, index, googleMarkers} = this.props;
-		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/));
+		const {marker, index, googleMarkers} = this.props
+		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/))
 
 		return (
 			<div className="list-item" onClick={() => this.onClick(marker, googleMarkers)}>

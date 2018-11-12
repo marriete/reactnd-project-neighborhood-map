@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Map from './Map.js'
 import FilterMenu from './FilterMenu.js'
 import ListView from './ListView.js'
-import './App.css';
+import './App.css'
 import { Route, Link } from 'react-router-dom'
 import FilterModal from './FilterModal.js'
 
@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   getYelpData = (locations) => {
-    let yelpData = [];
+    let yelpData = []
 
     locations.forEach((location, index) => {
       let config = {
@@ -44,16 +44,16 @@ class App extends Component {
         }
       }
 
-      var proxyUrl = "http://localhost:8080/";
-      var targetUrl = `https://api.yelp.com/v3/businesses/${config.params.id}`;
+      var proxyUrl = "http://localhost:8080/"
+      var targetUrl = `https://api.yelp.com/v3/businesses/${config.params.id}`
 
       setTimeout(() => {
         fetch(proxyUrl + targetUrl, config)
         .then(response => {
           console.log("success")
           response.json().then(data => {
-            yelpData.push(data);
-            this.getFilters(data);
+            yelpData.push(data)
+            this.getFilters(data)
             this.setState(yelpData)
             if (index === 8) {
               this.setState({loaded: true})
@@ -62,10 +62,9 @@ class App extends Component {
         })
         .catch(event => {
           console.log("failure")
-        })}, 400*index);
+        })}, 400*index)
     })
-
-    return yelpData;
+    return yelpData
   }
 
   getFilters = (data) => {
@@ -73,8 +72,8 @@ class App extends Component {
       if ( !this.state.filters.includes( cat.title )) {
         this.setState({ filters: [ ...this.state.filters, cat.title ]})
       }
-    });
-    this.getCheckedMarkers();
+    })
+    this.getCheckedMarkers()
   }
 
   toggleInit = () => {
@@ -88,12 +87,10 @@ class App extends Component {
       title: mark.name,
       icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     })
-
-    return marker;
+    return marker
   }
 
   infoWindowListener = (content, marker, map, infoWindow) => {
-    console.log(marker)
     marker.addListener('click', () => {
       if(infoWindow.opened){
         if(marker.getIcon() === 'http://maps.google.com/mapfiles/ms/icons/red-dot.png') {
@@ -101,41 +98,41 @@ class App extends Component {
           infoWindow.setContent(content)
           marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
           infoWindow.open(map, marker)
-          infoWindow.opened = true;
+          infoWindow.opened = true
         } else {
           marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
           infoWindow.close(map, marker)
-          infoWindow.opened = false;
+          infoWindow.opened = false
         }
       }
       else{
         infoWindow.setContent(content)
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
         infoWindow.open(map, marker)
-        infoWindow.opened = true;
+        infoWindow.opened = true
       }
     })
     infoWindow.addListener('closeclick', function() {
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
       infoWindow.close(map, marker)
-      infoWindow.opened = false;
-    });
+      infoWindow.opened = false
+    })
   }
 
   returnPhoneNumber = (phoneNumber) => {
-    var areaCode = phoneNumber.substring(2,5);
-    var prefix = phoneNumber.substring(5,8);
-    var line = phoneNumber.substring(8,12);
+    var areaCode = phoneNumber.substring(2,5)
+    var prefix = phoneNumber.substring(5,8)
+    var line = phoneNumber.substring(8,12)
 
-    return areaCode + "-" + prefix + "-" + line;
+    return areaCode + "-" + prefix + "-" + line
   }
 
   showModal = () => {
-    this.setState({ show: true });
+    this.setState({ show: true })
   }
 
   hideModal = () => {
-    this.setState({ show: false });
+    this.setState({ show: false })
   }
 
   containsObject = (objectArray, newObject) => {
@@ -152,12 +149,12 @@ class App extends Component {
   }
 
   getCheckedMarkers = () => {
-    let result = [];
+    let result = []
     if ( this.state.checkedFilters.length === 0 ) {
       result = this.state.yelpData
     } else {
       this.state.checkedFilters.forEach((filterOption) => {
-        let test = null;
+        let test = null
         test = this.state.yelpData.filter(marker => {
           let booleanArray = []
           marker.categories.forEach((cat) => {
@@ -171,7 +168,7 @@ class App extends Component {
         })
         for(let i=0; i<test.length; i++) {
           if ( !this.containsObject( result, test[i] ) ) {
-            result = result.concat( test[i] );
+            result = result.concat( test[i] )
           }
         }
       })
@@ -226,7 +223,6 @@ class App extends Component {
     return this.state.markers.map((marker) => {
       for(let i=0; i < this.state.googleMarkers.length; i++) {
         if (this.state.googleMarkers[i].title === marker.name) {
-          // this.state.googleMarkers[i].setMap(this.state.map)
           return i
         }
       }
@@ -234,8 +230,8 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    let yelpData = await this.getYelpData(this.state.locations);
-    this.setState({yelpData});
+    let yelpData = await this.getYelpData(this.state.locations)
+    this.setState({yelpData})
   }
 
   content() {
@@ -282,8 +278,8 @@ class App extends Component {
       <div className="App">
         {this.state.loaded ? this.content() : <div>Loading...</div>}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
