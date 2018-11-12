@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Map from './Map.js'
-import FilterMenu from './FilterMenu.js'
 import ListView from './ListView.js'
 import './App.css'
 import { Route, Link } from 'react-router-dom'
