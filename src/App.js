@@ -168,8 +168,10 @@ class App extends Component {
           })
           return booleanArray.includes(true)
         })
-        if ( !this.containsObject( result, test[0] ) ) {
-          result = result.concat( test );
+        for(let i=0; i<test.length; i++) {
+          if ( !this.containsObject( result, test[i] ) ) {
+            result = result.concat( test[i] );
+          }
         }
       })
     }
