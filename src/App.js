@@ -62,7 +62,7 @@ class App extends Component {
         })
         .catch(event => {
           console.log("failure")
-        })}, 400*index)
+        })}, 500*index)
     })
     return yelpData
   }
