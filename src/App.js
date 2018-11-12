@@ -93,11 +93,19 @@ class App extends Component {
   }
 
   infoWindowListener = (content, marker, map, infoWindow) => {
-    marker.addListener('click', function() {
+    marker.addListener('click', () => {
       if(infoWindow.opened){
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
-        infoWindow.close(map, marker)
-        infoWindow.opened = false;
+        if(marker.getIcon() === 'http://maps.google.com/mapfiles/ms/icons/red-dot.png') {
+          window.google.maps.event.trigger(infoWindow, 'closeclick')
+          infoWindow.setContent(content)
+          marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
+          infoWindow.open(map, marker)
+          infoWindow.opened = true;
+        } else {
+          marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+          infoWindow.close(map, marker)
+          infoWindow.opened = false;
+        }
       }
       else{
         infoWindow.setContent(content)
@@ -105,7 +113,11 @@ class App extends Component {
         infoWindow.open(map, marker)
         infoWindow.opened = true;
       }
-
+    })
+    infoWindow.addListener('closeclick', function() {
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+      infoWindow.close(map, marker)
+      infoWindow.opened = false;
     });
   }
 
