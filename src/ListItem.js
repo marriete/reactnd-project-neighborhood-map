@@ -48,12 +48,23 @@ class ListItem extends Component {
 		return images;
 	}
 
+	onClick(marker, googleMarkers) {
+		console.log(marker)
+		console.log(googleMarkers)
+		googleMarkers.forEach((gmark) => {
+			if(gmark.title === marker.name) {
+				window.google.maps.event.trigger(gmark, 'click')
+				this.props.history.push('/')
+			}
+		})
+	}
+
 	render() {
-		const {marker, index} = this.props;
+		const {marker, index, googleMarkers} = this.props;
 		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/));
 
 		return (
-			<div className="list-item">
+			<div className="list-item" onClick={() => this.onClick(marker, googleMarkers)}>
 				<div className="list-item-image">
 					<img src={marker.image_url} alt=""/>
 				</div>

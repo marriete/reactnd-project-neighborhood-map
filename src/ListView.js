@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 class ListView extends Component {
 	render() {
+		console.log(this.props.googleMarkers)
 		return (
 			<div>
 				<Link className="close-list" to="/">Close</Link>
@@ -11,8 +12,10 @@ class ListView extends Component {
 					<ListItem
 						key={index}
 						marker={marker}
+						googleMarkers={this.props.googleMarkers}
 						index={index}
-						returnPhoneNumber={this.props.returnPhoneNumber} />
+						returnPhoneNumber={this.props.returnPhoneNumber}
+						history={this.props.history} />
 				))}
 			</div>
 		)

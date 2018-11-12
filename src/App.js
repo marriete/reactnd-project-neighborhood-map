@@ -93,6 +93,7 @@ class App extends Component {
   }
 
   infoWindowListener = (content, marker, map, infoWindow) => {
+    console.log(marker)
     marker.addListener('click', () => {
       if(infoWindow.opened){
         if(marker.getIcon() === 'http://maps.google.com/mapfiles/ms/icons/red-dot.png') {
@@ -265,10 +266,12 @@ class App extends Component {
             <Link type="button" className="to-list" to="/list">List View</Link>
           </section>
         )} />
-        <Route path="/list" render={() => (
+        <Route path="/list" render={({history}) => (
           <ListView
             markers={this.state.markers}
-            returnPhoneNumber={this.returnPhoneNumber} />
+            googleMarkers={this.state.googleMarkers !== [] ? this.state.googleMarkers : null}
+            returnPhoneNumber={this.returnPhoneNumber}
+            history={history} />
         )} />
       </div>
     )
