@@ -84,18 +84,30 @@ class App extends Component {
     var marker = new window.google.maps.Marker({
       position: {lat: mark.coordinates.latitude, lng: mark.coordinates.longitude},
       map: map,
-      title: mark.name
+      title: mark.name,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     })
 
     return marker;
   }
 
   createInfoWindow = (content, marker, map) => {
+    window.google.maps.InfoWindow.prototype.opened = false;
     var infoWindow = new window.google.maps.InfoWindow({
       content: content
     });
     marker.addListener('click', function() {
-      infoWindow.open(map, marker)
+      if(infoWindow.opened){
+         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+         infoWindow.close(map, marker)
+         infoWindow.opened = false;
+      }
+      else{
+         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
+         infoWindow.open(map, marker)
+         infoWindow.opened = true;
+      }
+
     });
   }
 
