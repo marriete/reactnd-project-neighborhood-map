@@ -8,6 +8,7 @@ class Map extends Component {
     return infoWindow
 	}
 
+	// Function to perform Google map load on component render
 	onScriptLoad = () => {
 		const map = new window.google.maps.Map(
 			document.getElementById(this.props.id),

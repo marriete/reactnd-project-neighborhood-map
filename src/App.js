@@ -33,6 +33,7 @@ class App extends Component {
     initialized: false
   }
 
+  // Function to retrieve Yelp Data for provided locations in state
   getYelpData = (locations) => {
     let yelpData = []
 
@@ -67,6 +68,7 @@ class App extends Component {
     return yelpData
   }
 
+  // Function to go through Yelp Data to find all potential Category filters for our modal window filter system
   getFilters = (data) => {
     data.categories.forEach((cat) => {
       if ( !this.state.filters.includes( cat.title )) {
@@ -76,10 +78,12 @@ class App extends Component {
     this.getCheckedMarkers()
   }
 
+  // Function used to determine when first rendering of map is completed
   toggleInit = () => {
     this.setState({initialized: true})
   }
 
+  // Function used in child component to generate each Google marker
   createMarker = (map, mark) => {
     var marker = new window.google.maps.Marker({
       position: {lat: mark.coordinates.latitude, lng: mark.coordinates.longitude},
@@ -90,6 +94,7 @@ class App extends Component {
     return marker
   }
 
+  // Function used in child component to add shareable infoWindow event listener to each marker
   infoWindowListener = (content, marker, map, infoWindow) => {
     marker.addListener('click', () => {
       if(infoWindow.opened){
@@ -119,6 +124,7 @@ class App extends Component {
     })
   }
 
+  // Function used to return an international phone number in the standard xxx-xxx-xxxx string format
   returnPhoneNumber = (phoneNumber) => {
     var areaCode = phoneNumber.substring(2,5)
     var prefix = phoneNumber.substring(5,8)
@@ -127,14 +133,17 @@ class App extends Component {
     return areaCode + "-" + prefix + "-" + line
   }
 
+  // Function used to display filter modal
   showModal = () => {
     this.setState({ show: true })
   }
 
+  // Function used to hide filter modal
   hideModal = () => {
     this.setState({ show: false })
   }
 
+  // Function used to determine if an object belongs to a specific array of objects
   containsObject = (objectArray, newObject) => {
     let testArray = objectArray.map(obj => {
       if (obj.id === newObject.id )
@@ -148,6 +157,7 @@ class App extends Component {
       return false
   }
 
+  // Function used to pull out desired marker data depending on filter selections
   getCheckedMarkers = () => {
     let result = []
     if ( this.state.checkedFilters.length === 0 ) {
@@ -176,12 +186,14 @@ class App extends Component {
     this.setState({markers: result}, () => this.showSelectMarkers())
   }
 
+  // Function used to add Google marker information to the state
   addGoogleMarker = (marker) => {
     this.setState((prevState) => ({
       googleMarkers: [...prevState.googleMarkers, marker]
     }))
   }
 
+  // Function used to add Google map information to the state
   saveMap = (map, infoWindow) => {
     this.setState({
       map: map,
@@ -189,6 +201,7 @@ class App extends Component {
     })
   }
 
+  // Function used to handle checkbox click event
   checkboxChange = (e) => {
     if (e.target.checked === true) {
       this.setState({checkedFilters: [...this.state.checkedFilters, e.target.value]}, () => {this.getCheckedMarkers()})
@@ -201,6 +214,7 @@ class App extends Component {
     }
   }
 
+  // Function used to set all marker maps to null
   hideAllMarkers = () => {
     for(let i=0; i<this.state.googleMarkers.length; i++){
       if ( this.state.googleMarkers[i].map !== null)
@@ -208,6 +222,7 @@ class App extends Component {
     }
   }
 
+  // Function used to display specifically filtered markers
   showSelectMarkers = () => {
     if(this.state.initialized === true) {
       this.hideAllMarkers()
@@ -219,6 +234,7 @@ class App extends Component {
     }
   }
 
+  // Function used to return an array of the filtered marker indexes
   filterMarkers = () => {
     return this.state.markers.map((marker) => {
       for(let i=0; i < this.state.googleMarkers.length; i++) {

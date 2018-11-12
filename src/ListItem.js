@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 class ListItem extends Component {
+
+	// Function used to take Yelp's array of location's time information and return the associated day
 	returnDay = (dayValue) => {
 		switch(dayValue) {
 			case 0:
@@ -22,6 +24,7 @@ class ListItem extends Component {
 		}
 	}
 
+	// Function used to return Standard Time from Military Time
 	returnStandardTime = (militaryTime) => {
 		var hours24 = parseInt(militaryTime.substring(0,2),10)
 		var hours = ((hours24 + 11) % 12) + 1
@@ -31,6 +34,7 @@ class ListItem extends Component {
 		return hours + ":" + minutes + " " + meridiem
 	}
 
+	// Function used to return the Yelp png file of the corresponding Yelp rating
 	returnYelpRating = (ratingValue, images) => {
 		switch(ratingValue % 1) {
 			case 0:
@@ -42,12 +46,14 @@ class ListItem extends Component {
 		}
 	}
 
+	// Function used to import all Yelp png images from file structure
 	importAllImages = (r) => {
 		let images = {}
 		r.keys().map((item, index) => { return images[item.replace('./', '')] = r(item) })
 		return images
 	}
 
+	// On click function to trigger associated marker's 'click' event handler and redirects user to map page
 	onClick = (marker, googleMarkers) => {
 		googleMarkers.forEach((gmark) => {
 			if(gmark.title === marker.name) {
