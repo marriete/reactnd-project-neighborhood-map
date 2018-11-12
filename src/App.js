@@ -84,40 +84,52 @@ class App extends Component {
 
   // Function used in child component to generate each Google marker
   createMarker = (map, mark) => {
+    var icon = {
+      url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      scaledSize: new window.google.maps.Size(40, 40)
+    }
     var marker = new window.google.maps.Marker({
       position: {lat: mark.coordinates.latitude, lng: mark.coordinates.longitude},
       map: map,
       title: mark.name,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      icon: icon
     })
     return marker
   }
 
   // Function used in child component to add shareable infoWindow event listener to each marker
   infoWindowListener = (content, marker, map, infoWindow) => {
+    var redIcon = {
+      url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      scaledSize: new window.google.maps.Size(40, 40)
+    }
+    var yellowIcon = {
+      url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+      scaledSize: new window.google.maps.Size(40, 40)
+    }
     marker.addListener('click', () => {
       if(infoWindow.opened){
-        if(marker.getIcon() === 'http://maps.google.com/mapfiles/ms/icons/red-dot.png') {
+        if(marker.getIcon().url === 'http://maps.google.com/mapfiles/ms/icons/red-dot.png') {
           window.google.maps.event.trigger(infoWindow, 'closeclick')
           infoWindow.setContent(content)
-          marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
+          marker.setIcon(yellowIcon)
           infoWindow.open(map, marker)
           infoWindow.opened = true
         } else {
-          marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+          marker.setIcon(redIcon)
           infoWindow.close(map, marker)
           infoWindow.opened = false
         }
       }
       else{
         infoWindow.setContent(content)
-        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png')
+        marker.setIcon(yellowIcon)
         infoWindow.open(map, marker)
         infoWindow.opened = true
       }
     })
     infoWindow.addListener('closeclick', function() {
-      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+      marker.setIcon(redIcon)
       infoWindow.close(map, marker)
       infoWindow.opened = false
     })
