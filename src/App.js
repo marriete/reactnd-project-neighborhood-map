@@ -264,10 +264,11 @@ class App extends Component {
   content() {
     return(
       <div className="App">
-        <button className="filter-button" type="button" onClick={this.showModal}>Filters</button>
+        <button className="filter-button" type="button" onClick={this.showModal} onKeyPress={this.showModal}>Filter Markers</button>
         <FilterModal show={this.state.show} handleClose={this.hideModal} changeFunction={this.checkboxChange} filters={this.state.filters} />
         <Route exact path="/" render={() => (
           <section>
+            <Link type="button" className="to-list" to="/list">List View</Link>
             <Map
               id="map"
               options={{
@@ -286,7 +287,6 @@ class App extends Component {
               map={this.state.map}
               initialized={this.state.initialized}
               toggleInit={this.toggleInit} />
-            <Link type="button" className="to-list" to="/list">List View</Link>
           </section>
         )} />
         <Route path="/list" render={({history}) => (
