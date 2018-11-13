@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class ListView extends Component {
 	render() {
 		return (
-			<div>
+			<div className="list-view">
 				<Link className="close-list" to="/">Close</Link>
 				{this.props.markers.map((marker, index) => (
 					<ListItem
