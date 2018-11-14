@@ -53,6 +53,7 @@ h1 {
 	background-color: #faebd7; /*#d7d8fa*/
 }
 .list-item {
+	cursor: pointer;
 	max-width: 650px;
 	box-sizing: border-box;
 	margin: auto;
