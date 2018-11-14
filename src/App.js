@@ -303,7 +303,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.loaded ? this.content() : <div>Loading...</div>}
+        {this.state.loaded ? this.content() :
+          <div className="wrap">
+            <div className="loading">
+              <div className="bounceball"></div>
+              <div className="text">LOADING...</div>
+            </div>
+          </div>}
       </div>
     )
   }
