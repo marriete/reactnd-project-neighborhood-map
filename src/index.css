@@ -49,6 +49,9 @@ h1 {
 #nav:hover {
 	cursor: pointer;
 }
+.App {
+	background-color: #faebd7;
+}
 .list-view {
 	background-color: #faebd7; /*#d7d8fa*/
 }
@@ -206,6 +209,7 @@ h1 {
 }
 .filter-button {
 	position: fixed;
+	cursor: pointer;
   top: 60px;
   left: 10px;
   width: 50px;
