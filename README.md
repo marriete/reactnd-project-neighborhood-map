@@ -6,14 +6,10 @@ The goal of the project was to use React, the Google Maps API, plus data from a 
 
 ## How to run
 
-1. Download or clone the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) repository. (This is used as a workaround for Yelp Fusion API fetching)
-2. CD into installation folder run `npm install`
-3. Start the cors-anywhere with `npm run start`
-4. Note the port used for cors-anywhere and ensure that the prefix used in the Yelp Fusion fetch command in App.js is the same port (i.e. var proxyUrl = "http://localhost:8080/")
-5. Download or clone [this](https://github.com/marriete/reactnd-project-neighborhood-map) repository
-6. Install all project dependencies with `npm install`
-7. Start the development server with `npm start`
-8. Create a production build with `npm run build`, which can then be run by running `serve -s build` and opening in the browser.
+1. Download or clone [this](https://github.com/marriete/reactnd-project-neighborhood-map) repository
+2. Install all project dependencies with `npm install`
+3. Start the development server with `npm start`
+4. Create a production build with `npm run build`, which can then be run by running `serve -s build` and opening in the browser.
 
 Note that the offline functionality of the app is only available in Production Mode. This caches the app boilerplate using the service worker provided with Create React App. The API data and map data are only shown when there is a network connection, to avoid violating any terms of service.
 
