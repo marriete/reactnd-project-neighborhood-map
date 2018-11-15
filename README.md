@@ -14,5 +14,5 @@ The goal of the project was to use React, the Google Maps API, plus data from a 
 Note that the offline functionality of the app is only available in Production Mode. This caches the app boilerplate using the service worker provided with Create React App. The API data and map data are only shown when there is a network connection, to avoid violating any terms of service.
 
 ## Additional resources used
-- [react-google-maps](https://tomchentw.github.io/react-google-maps/)
+- [Google Maps API](https://developers.google.com/maps/documentation/)
 - [Yelp Fusion API](https://www.yelp.com/fusion)
