@@ -44,7 +44,7 @@ class App extends Component {
         }
       }
 
-      var proxyUrl = "http://localhost:8080/"
+      var proxyUrl = "https://cors-anywhere.herokuapp.com/" //"http://localhost:8080/"
       var targetUrl = `https://api.yelp.com/v3/businesses/${config.params.id}`
 
       setTimeout(() => {
