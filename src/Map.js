@@ -24,12 +24,21 @@ class Map extends Component {
 			script.async = true
 			script.defer = true
 			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA45Kaoio3gDd4K2qUppRAPv7qhKkzOh90`
+			script.onerror = function() {
+			console.log('error occurred')
+			}
 			var x = document.getElementsByTagName('script')[0]
 			x.parentNode.insertBefore(script, x)
 
 			script.addEventListener('load', event => {
 				this.onScriptLoad()
 			})
+
+			var errorScript = document.createElement('script')
+			errorScript.type = 'text/javascript'
+			script.text = `
+`
+
 		} else {
 			this.onScriptLoad()
 		}

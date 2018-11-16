@@ -7,6 +7,17 @@
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <title>Neighborhood Map App</title>
+    <script>
+      window.mapUnavailable = false;
+      function errorCallback() {
+        window.mapUnavailable = true;
+      }
+      function gm_authFailure() {
+        window.mapUnavailable = true;
+        // This error occurs after React has already started to render the map component, so use DOM manipulation to override Google's message.
+        document.querySelector('.App').innerHTML = '<section class="error-container"><p class="maps-error">Could not load map: Google Maps Authorization Failure</p></section>';
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

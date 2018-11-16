@@ -29,7 +29,8 @@ class App extends Component {
     checkedFilters: [],
     loaded: false,
     show: false,
-    initialized: false
+    initialized: false,
+    dataUnavailable: false
   }
 
   // Function to retrieve Yelp Data for provided locations in state
@@ -50,6 +51,11 @@ class App extends Component {
       setTimeout(() => {
         fetch(proxyUrl + targetUrl, config)
         .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText)
+          }
+          return response
+        }).then(response => {
           console.log("success")
           response.json().then(data => {
             yelpData.push(data)
@@ -60,8 +66,9 @@ class App extends Component {
             }
           })
         })
-        .catch(event => {
-          console.log("failure")
+        .catch(error => {
+          console.log("Error fetching data from Yelp Database: ", error)
+          this.setState({dataUnavailable: true})
         })}, 500*index)
     })
     return yelpData
@@ -256,6 +263,10 @@ class App extends Component {
     })
   }
 
+  hideAlert = () => {
+    document.querySelector('.alert').style.display='none';
+  }
+
   async componentWillMount() {
     let yelpData = await this.getYelpData(this.state.locations)
     this.setState({yelpData})
@@ -264,6 +275,12 @@ class App extends Component {
   content() {
     return(
       <div className="App">
+        {!this.state.dataUnavailable ? null :
+          <div className="alert">
+            <span role="button" className="closeButton" onClick={this.hideAlert}>&times;</span>
+            Some Yelp Data did not load properly! Try refreshing the page!
+          </div>
+        }
         <button role="button" className="filter-button" type="button" onClick={this.showModal} onKeyPress={this.showModal}>Filter Markers</button>
         <FilterModal show={this.state.show} handleClose={this.hideModal} changeFunction={this.checkboxChange} filters={this.state.filters} />
         <Route exact path="/" render={() => (

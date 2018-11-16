@@ -236,7 +236,40 @@ h1 {
 .filter-close {
 	margin: 1em;
 }
+.error-container {
+	display: flex;
+	height: 100%;
+}
+.maps-error {
+	margin: auto;
+	text-align: center;
+	font-size: 2em;
+	color: #fbae17;
+}
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
 
+/* The close button */
+.closeButton {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closeButton:hover {
+    color: black;
+}
 .wrap {
   position: absolute;
   top: 50%;
