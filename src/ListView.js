@@ -6,7 +6,7 @@ class ListView extends Component {
 	render() {
 		return (
 			<div className="list-view">
-				<Link className="close-list" to="/">Close</Link>
+				<Link role="button" type="button" className="close-list" to="/">Close</Link>
 				{this.props.markers.map((marker, index) => (
 					<ListItem
 						key={index}

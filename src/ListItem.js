@@ -74,7 +74,7 @@ class ListItem extends Component {
 		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/))
 
 		return (
-			<div className="list-item" tabIndex="0" onClick={() => this.onClick(marker, googleMarkers)} onKeyPress={(event) => this.handleKeyPress(event, marker, googleMarkers)}>
+			<div className="list-item" tabIndex="0" aria-labelledby={marker.name} onClick={() => this.onClick(marker, googleMarkers)} onKeyPress={(event) => this.handleKeyPress(event, marker, googleMarkers)}>
 				<div className="list-item-image">
 					<img src={marker.image_url} alt={marker.name} />
 				</div>
