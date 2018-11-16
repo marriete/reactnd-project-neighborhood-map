@@ -63,12 +63,19 @@ class ListItem extends Component {
 		})
 	}
 
+	handleKeyPress = (event, marker, googleMarkers) => {
+	  console.log('Function entered')
+	  if(event.key === 'Enter'){
+	    this.onClick(marker, googleMarkers)
+	  }
+	}
+
 	render() {
 		const {marker, index, googleMarkers} = this.props
 		const images = this.importAllImages(require.context('./icons/yelp_stars/web_and_ios/regular/', false, /\.(png|jpe?g|svg)$/))
 
 		return (
-			<div className="list-item" onClick={() => this.onClick(marker, googleMarkers)}>
+			<div className="list-item" tabIndex="0" onClick={() => this.onClick(marker, googleMarkers)} onKeyPress={(event) => this.handleKeyPress(event, marker, googleMarkers)}>
 				<div className="list-item-image">
 					<img src={marker.image_url} alt={marker.name} />
 				</div>
