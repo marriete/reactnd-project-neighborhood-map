@@ -21,6 +21,8 @@ class Map extends Component {
 		if (!window.google) {
 			var script = document.createElement('script')
 			script.type = 'text/javascript'
+			script.async = true
+			script.defer = true
 			script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA45Kaoio3gDd4K2qUppRAPv7qhKkzOh90`
 			var x = document.getElementsByTagName('script')[0]
 			x.parentNode.insertBefore(script, x)
