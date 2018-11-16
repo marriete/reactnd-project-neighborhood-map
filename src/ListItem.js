@@ -70,7 +70,7 @@ class ListItem extends Component {
 		return (
 			<div className="list-item" onClick={() => this.onClick(marker, googleMarkers)}>
 				<div className="list-item-image">
-					<img src={marker.image_url} alt=""/>
+					<img src={marker.image_url} alt={marker.name} />
 				</div>
 				<div className="list-item-info">
 					<span className="list-item-name list-item-mutual">{index+1}. {marker.name}</span>
