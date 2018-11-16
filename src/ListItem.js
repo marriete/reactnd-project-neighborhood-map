@@ -64,7 +64,6 @@ class ListItem extends Component {
 	}
 
 	handleKeyPress = (event, marker, googleMarkers) => {
-	  console.log('Function entered')
 	  if(event.key === 'Enter'){
 	    this.onClick(marker, googleMarkers)
 	  }
